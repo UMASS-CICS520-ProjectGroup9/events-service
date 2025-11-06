@@ -1,0 +1,26 @@
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('events/', views.getEvents, name='getEvents'),
+    path('events/<int:eventID>/', views.getEvent, name='getEvent'),
+    path('events/create/', views.createEvent, name='createEvent'),
+    path('events/<int:eventID>/update/', views.updateEvent, name='updateEvent'),
+    path('events/<int:eventID>/delete/', views.deleteEvent, name='deleteEvent'),
+    path('events/<int:eventID>/register/', views.registerStudent, name='registerStudent'),
+    path('events/<int:eventID>/unregister/', views.unregisterStudent, name='unregisterStudent'),
+    path('events/<int:eventID>/registered_students/', views.getRegisteredStudents, name='getRegisteredStudents'),
+    path('events/full/', views.getFullEvents, name='getFullEvents'),
+    path('events/available/', views.getAvailableEvents, name='getAvailableEvents'),
+    path('events/sorted_by_creation_date/', views.getEventsSortedByCreationDate, name='getEventsSortedByCreationDate'),
+    path('events/sorted_by_update_date/', views.getEventsSortedByUpdateDate, name='getEventsSortedByUpdateDate'),
+    path('events/filters/', views.getEventsByMultipleFilters, name='getEventsByMultipleFilters'),
+    path('', views.apiOverview, name='apiOverview'),
+    path('events/count/', views.getEventCount, name='getEventCount'),
+    path('events/upcoming/', views.getUpcomingEvents, name='getUpcomingEvents'),
+    path('events/past/', views.getPastEvents, name='getPastEvents'),
+    path('events/search/', views.searchEvents, name='searchEvents'),
+    path('events/by_host/<str:hosted_by>/', views.getEventsByHost, name='getEventsByHost'),
+    path('events/by_type/<str:eventType>/', views.getEventsByType, name='getEventsByType'),
+    path('events/by_location/<str:location>/', views.getEventsByLocation, name='getEventsByLocation'),
+    path('events/by_creator/<str:creator>/', views.getEventsByCreator, name='getEventsByCreator'),
+]
