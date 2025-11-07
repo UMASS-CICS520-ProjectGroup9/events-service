@@ -9,6 +9,7 @@ class Event(models.Model):
     eventType = models.CharField(max_length=50)
     location = models.CharField(max_length=200)
     capacity = models.IntegerField()
+    image_url = models.URLField(blank=True, null=True)
     link = models.URLField(blank=True, null=True)
     zoom_link = models.URLField(blank=True, null=True)
     hosted_by = models.CharField(max_length=100)

@@ -9,14 +9,15 @@
             "eventType": "Workshop",
             "location": "Worcester Hall, Room 201",
             "capacity": 120,
+            "image_url": "https://coamplifi.com/wp-content/uploads/2021/04/coamplifi-meetings-1-750x550.jpg",
             "link": "https://events.university.edu/events/42",
             "zoom_link": "https://zoom.us/j/9876543210",
             "hosted_by": "CS Department",
             "registered_students": [
-                1001,
-                1002,
-                1003,
-                1010
+                1,
+                2,
+                3,
+                4
             ],
             "event_start_date": "2025-11-10T18:00:00Z",
             "event_end_date": "2025-11-10T20:00:00Z",
@@ -34,14 +35,14 @@
             "eventType": "Seminar",
             "location": "Online via Zoom",
             "capacity": 300,
+            "image_url": "https://d3f1iyfxxz8i1e.cloudfront.net/courses/course_image/0b13daab86bf.jpg",
             "link": "https://events.university.edu/events/43",
             "zoom_link": "https://zoom.us/j/1234567890",
             "hosted_by": "Data Science Club",
             "registered_students": [
-                1004,
-                1005,
-                1006,
-                1011
+                1,
+                2,
+                4
             ],
             "event_start_date": "2025-11-12T15:00:00Z",
             "event_end_date": "2025-11-12T16:30:00Z",

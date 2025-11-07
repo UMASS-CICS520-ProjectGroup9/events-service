@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ event.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 24px
+        }
+
+        .meta {
+            color: #666;
+            font-size: 0.9em
+        }
+
+        .back {
+            margin-bottom: 12px;
+            display: inline-block
+        }
+
+        .chip {
+            display: inline-block;
+            background: #f1f1f1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 6px
+        }
+    </style>
+</head>
+
+<body>
+    <a class="back" href="{% url 'base:events_list' %}">&larr; Back to events</a>
+    <h1>{{ event.title }}</h1>
+    <div class="meta">Hosted by <strong>{{ event.hosted_by }}</strong> • Created by {{ event.creator }}</div>
+    <p class="meta">Event type: {{ event.eventType }} • Location: {{ event.location }}</p>
+    <p>{{ event.description|linebreaksbr }}</p>
+
+    <p class="meta">Starts: {{ event.event_start_date }}<br>Ends: {{ event.event_end_date }}</p>
+
+    <p>Capacity: <span class="chip">{{ event.capacity }}</span> Registered: <span class="chip">{{
+            event.registered_students|length }}</span></p>
+
+    <p>
+        {% if event.link %}<a class="chip" href="{{ event.link }}" target="_blank">Event Link</a>{% endif %}
+        {% if event.zoom_link %}<a class="chip" href="{{ event.zoom_link }}" target="_blank">Zoom Link</a>{% endif %}
+    </p>
+
+    <h3>Registered students</h3>
+    {% if event.registered_students %}
+    <ul>
+        {% for sid in event.registered_students %}
+        <li>{{ sid }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No students registered yet.</p>
+    {% endif %}
+
+    <hr>
+    <p class="meta">Created: {{ event.created_at }} • Last updated: {{ event.updated_at }}</p>
+</body>
+
+</html>

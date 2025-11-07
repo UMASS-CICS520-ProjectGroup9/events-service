@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      .event { border: 1px solid #ddd; padding: 12px; margin-bottom: 12px; border-radius: 6px }
+      .meta { color: #666; font-size: 0.9em }
+      a.button { background:#1976d2; color:white; padding:6px 10px; border-radius:4px; text-decoration:none }
+    </style>
+  </head>
+  <body>
+    <h1>Events</h1>
+    {% if events %}
+      <p>Showing {{ events|length }} event{% if events|length != 1 %}s{% endif %}.</p>
+      {% for e in events %}
+        <div class="event">
+          <h2><a href="{% url 'base:event_detail' e.eventID %}">{{ e.title }}</a></h2>
+          <div class="meta">Hosted by {{ e.hosted_by }} • Created by {{ e.creator }} • Capacity: {{ e.capacity }}</div>
+          <p>{{ e.description|linebreaksbr }}</p>
+          <p class="meta">Starts: {{ e.event_start_date }} — Ends: {{ e.event_end_date }}</p>
+          <p>
+            {% if e.link %}<a class="button" href="{{ e.link }}" target="_blank">Event Page</a>{% endif %}
+            {% if e.zoom_link %}<a class="button" href="{{ e.zoom_link }}" target="_blank" style="margin-left:8px">Join Zoom</a>{% endif %}
+            <a class="button" href="{% url 'api:getEvent' e.eventID %}" style="margin-left:8px;background:#4caf50">API JSON</a>
+          </p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No events found.</p>
+    {% endif %}
+  </body>
+</html>

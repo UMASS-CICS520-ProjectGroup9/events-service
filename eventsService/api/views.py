@@ -235,11 +235,25 @@ def getEventsSortedByUpdateDate(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def getEventsSortedByStartDate(request):
+    events = Event.objects.all().order_by('event_start_date')
+    serializer = EventSerializer(events, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def getEventsSortedByEndDate(request):
+    events = Event.objects.all().order_by('event_end_date')
+    serializer = EventSerializer(events, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def getEventsByMultipleFilters(request):
     creator = request.query_params.get('creator')
     eventType = request.query_params.get('eventType')
     location = request.query_params.get('location')
+    host = request.query_params.get('host')
     min_capacity = request.query_params.get('min_capacity')
+    max_capacity = request.query_params.get('max_capacity')
     events = Event.objects.all()
     if creator:
         events = events.filter(creator=creator)
@@ -247,8 +261,12 @@ def getEventsByMultipleFilters(request):
         events = events.filter(eventType=eventType)
     if location:
         events = events.filter(location__icontains=location)
+    if host:
+        events = events.filter(hosted_by__icontains=host)
     if min_capacity:
         events = events.filter(capacity__gte=min_capacity)
+    if max_capacity:
+        events = events.filter(capacity__lte=max_capacity)
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
