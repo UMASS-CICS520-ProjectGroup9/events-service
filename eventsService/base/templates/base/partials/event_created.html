@@ -1,0 +1,8 @@
+<div id="form-result" class="success">
+    <h4 style="color: green">Event Created Successfully!</h4>
+    <p>Event "{{ event.title }}" has been created.</p>
+    <div class="actions">
+        <a href="{% url 'base:event_detail' event.eventID %}" class="button small">View Event</a>
+        <button class="button small" onclick="document.getElementById('event-form').reset()">Create Another</button>
+    </div>
+</div>

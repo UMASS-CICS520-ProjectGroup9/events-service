@@ -1,0 +1,114 @@
+{% load static %}
+
+<!-- elements collection -->
+        
+                <article class="post">
+                    <header>
+                        <div class="title">
+                            <h2><a href="#">Elements</a></h2>
+                            <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+                        </div>
+                        <div class="meta">
+                            <time class="published" datetime="2015-10-18">October 18, 2015</time>
+                            <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+                        </div>
+                    </header>
+
+                    <section>
+                        <h3>Text</h3>
+                        <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+                        This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+                        This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+                        <hr />
+                        <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+                        <hr />
+                        <h2>Heading Level 2</h2>
+                        <h3>Heading Level 3</h3>
+                        <h4>Heading Level 4</h4>
+                        <hr />
+                        <h4>Blockquote</h4>
+                        <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+                        <h4>Preformatted</h4>
+                        <pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Actions</h3>
+                        <div class="row">
+                            <div class="col-6 col-12-medium">
+                                <ul class="actions">
+                                    <li><a href="#" class="button">Default</a></li>
+                                    <li><a href="#" class="button">Default</a></li>
+                                    <li><a href="#" class="button">Default</a></li>
+                                </ul>
+                                <ul class="actions small">
+                                    <li><a href="#" class="button small">Small</a></li>
+                                    <li><a href="#" class="button small">Small</a></li>
+                                    <li><a href="#" class="button small">Small</a></li>
+                                </ul>
+                                <ul class="actions stacked">
+                                    <li><a href="#" class="button">Default</a></li>
+                                    <li><a href="#" class="button">Default</a></li>
+                                    <li><a href="#" class="button">Default</a></li>
+                                </ul>
+                                <ul class="actions stacked">
+                                    <li><a href="#" class="button small">Small</a></li>
+                                    <li><a href="#" class="button small">Small</a></li>
+                                    <li><a href="#" class="button small">Small</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-12-medium">
+                                <ul class="actions stacked">
+                                    <li><a href="#" class="button fit">Default</a></li>
+                                    <li><a href="#" class="button fit">Default</a></li>
+                                </ul>
+                                <ul class="actions stacked">
+                                    <li><a href="#" class="button small fit">Small</a></li>
+                                    <li><a href="#" class="button small fit">Small</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+{% include './list.html' %} 
+{% include './table2.html' %}                  
+{% include './table1.html' %} 
+
+                    <section>
+                        <h3>Buttons</h3>
+                        <ul class="actions">
+                            <li><a href="#" class="button large">Large</a></li>
+                            <li><a href="#" class="button">Default</a></li>
+                            <li><a href="#" class="button small">Small</a></li>
+                        </ul>
+                        <ul class="actions fit">
+                            <li><a href="#" class="button fit">Fit</a></li>
+                            <li><a href="#" class="button fit">Fit</a></li>
+                            <li><a href="#" class="button fit">Fit</a></li>
+                        </ul>
+                        <ul class="actions fit small">
+                            <li><a href="#" class="button fit small">Fit + Small</a></li>
+                            <li><a href="#" class="button fit small">Fit + Small</a></li>
+                            <li><a href="#" class="button fit small">Fit + Small</a></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><a href="#" class="button icon solid fa-download">Icon</a></li>
+                            <li><a href="#" class="button icon solid fa-upload">Icon</a></li>
+                            <li><a href="#" class="button icon solid fa-save">Icon</a></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><span class="button disabled">Disabled</span></li>
+                            <li><span class="button disabled icon solid fa-download">Disabled</span></li>
+                        </ul>
+                    </section>
+ 	{% include './form.html' %} 
+          {% include './images.html' %}          
+
+                </article>
