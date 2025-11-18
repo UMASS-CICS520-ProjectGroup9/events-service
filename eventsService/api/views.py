@@ -6,7 +6,7 @@ from .serializers import EventSerializer
 
 @api_view(['GET'])
 def getEvents(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by('event_end_date')
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 

@@ -19,7 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    # HTML views for human-friendly event pages
-    # path('', include('base.urls')),
     # path('api-auth/', include('rest_framework.urls'))
 ]
