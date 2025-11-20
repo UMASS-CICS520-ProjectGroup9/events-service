@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Event(models.Model):
     eventID = models.AutoField(primary_key=True)
+    creator_id = models.IntegerField(null=True, blank=True) # user ID comes from token
     title = models.CharField(max_length=200)
     description = models.TextField()
     creator = models.CharField(max_length=100)

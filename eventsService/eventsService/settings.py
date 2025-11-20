@@ -20,7 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#fx*+&xd4r39wdmd4qp4d%s*%to*ejey_rl(rtn93c1%1twf!3'
+# SECRET_KEY = 'django-insecure-#fx*+&xd4r39wdmd4qp4d%s*%to*ejey_rl(rtn93c1%1twf!3'
+
+SECRET_KEY = 'Umass-CSCI520-FinalProject-Group9'
+
+SIMPLE_JWT = {
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": 'Umass-CSCI520-FinalProject-Group9',
+}
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +45,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'base.apps.BaseConfig',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'eventsService.authentication.ExternalJWTAuthentication',
+    ],
+    # "DEFAULT_PERMISSION_CLASSES": [
+    #     "rest_framework.permissions.IsAuthenticated",
+    #     # "base.permissions.IsOwnerOrAdmin"
+    # ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

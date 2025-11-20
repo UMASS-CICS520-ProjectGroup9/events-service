@@ -1,8 +1,11 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions, status
+from rest_framework.exceptions import PermissionDenied
 from django.db import models
 from base.models import Event
 from .serializers import EventSerializer
+from .permissions import IsAdmin, IsStudent, IsStaff, IsOwnerOrAdmin
 
 @api_view(['GET'])
 def getEvents(request):
@@ -12,6 +15,7 @@ def getEvents(request):
 
 
 @api_view(['GET'])
+# @permission_classes([permissions.AllowAny])
 def getEvent(request, eventID):
     try:
         event = Event.objects.get(eventID=eventID)
@@ -22,18 +26,25 @@ def getEvent(request, eventID):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([IsStudent])
 def createEvent(request):
     serializer = EventSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(creator_id=request.user.id)
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
 
 
 @api_view(['PUT'])
+@permission_classes([IsStudent])
 def updateEvent(request, eventID):
     try:
         event = Event.objects.get(eventID=eventID)
+        perm = IsOwnerOrAdmin()
+        if not perm.has_object_permission(request, view=updateEvent, obj=event):
+            raise PermissionDenied("You are not allowed to access this event.")
+    except PermissionDenied :
+        return Response({"Update": "Not allow"}, status=status.HTTP_404_NOT_FOUND)
     except Event.DoesNotExist:
         return Response({'error': 'Event not found'}, status=404)
     
@@ -44,9 +55,16 @@ def updateEvent(request, eventID):
     return Response(serializer.errors, status=400)
 
 @api_view(['DELETE'])
+@permission_classes([IsStudent])
 def deleteEvent(request, eventID):
+    print("eventid: ", eventID)
     try:
         event = Event.objects.get(eventID=eventID)
+        perm = IsOwnerOrAdmin()
+        if not perm.has_object_permission(request, view=deleteEvent, obj=event):
+            raise PermissionDenied("You are not allowed to access this event.")
+    except PermissionDenied :
+        return Response({"Delete": "Not allow"}, status=status.HTTP_404_NOT_FOUND)
     except Event.DoesNotExist:
         return Response({'error': 'Event not found'}, status=404)
     
@@ -54,6 +72,7 @@ def deleteEvent(request, eventID):
     return Response(status=204)
 
 @api_view(['POST'])
+@permission_classes([IsStudent])
 def registerStudent(request, eventID):
     try:
         event = Event.objects.get(eventID=eventID)
@@ -74,6 +93,7 @@ def registerStudent(request, eventID):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([IsStudent])
 def unregisterStudent(request, eventID):
     try:
         event = Event.objects.get(eventID=eventID)
