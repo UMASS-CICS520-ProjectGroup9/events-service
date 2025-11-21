@@ -19,12 +19,24 @@ def getEvents(request):
 def getEvent(request, eventID):
     try:
         event = Event.objects.get(eventID=eventID)
+        
     except Event.DoesNotExist:
         return Response({'error': 'Event not found'}, status=404)
     
     serializer = EventSerializer(event)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsStudent])
+def getEventByCreatorId(request, creator_id):
+    print("creator_id:------ ", type(creator_id))
+    try:
+        event = Event.objects.filter(creator_id=creator_id)
+    except Event.DoesNotExist:
+        return Response({'error': 'Event not found'}, status=404)
+    
+    serializer = EventSerializer(event, many=True)
+    return Response(serializer.data)
 @api_view(['POST'])
 @permission_classes([IsStudent])
 def createEvent(request):
