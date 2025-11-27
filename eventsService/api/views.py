@@ -215,8 +215,8 @@ def getRecentEvents(request, days):
     return Response(serializer.data)
 
 @api_view(['GET'])
-def getEventsByHost(request, host):
-    events = Event.objects.filter(hosted_by__icontains=host)
+def getEventsByHost(request, hosted_by):
+    events = Event.objects.filter(hosted_by__icontains=hosted_by)
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
 
@@ -244,14 +244,14 @@ def getEventsByKeyword(request):
 
 @api_view(['GET'])
 def getFullEvents(request): 
-    events = Event.objects.filter(registered_students__length=models.F('capacity'))
-    serializer = EventSerializer(events, many=True)
+    full_events = [event for event in Event.objects.all() if len(event.registered_students) >= event.capacity]
+    serializer = EventSerializer(full_events, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getAvailableEvents(request):
-    events = Event.objects.filter(registered_students__length__lt=models.F('capacity'))
-    serializer = EventSerializer(events, many=True)
+    available_events = [event for event in Event.objects.all() if len(event.registered_students) < event.capacity]
+    serializer = EventSerializer(available_events, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])

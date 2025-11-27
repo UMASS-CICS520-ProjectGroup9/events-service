@@ -1,14 +1,20 @@
 # Events Service API
 
+This Event Service API for the UMASS project. It is a Django project.
+
+* Document and More Detail just Open **docs/build/html/index.html** in your browser.
+
 Lightweight Django REST API for creating, updating, browsing, and registering for UMASS events. The service exposes a JSON-first `/api/` surface, uses JWT authentication shared with the user-auth service, and ships with sample data to get started quickly.
 
 ## Overview
+
 - Built with Django 5 + Django REST Framework; ships with SQLite for local development.
 - JWT-based auth via `ExternalJWTAuthentication` with role-aware permissions (student/staff/admin).
 - Core domain: `Event` records with capacity, registration roster, schedule, hosting details, and links.
 - Filtering, searching, sorting, and capacity-aware queries to support multiple event discovery flows.
 
 ## How to Compile and Run
+
 1. From the repo root, create/activate a virtualenv (recommended):
    ```bash
    python -m venv .venv
@@ -31,11 +37,13 @@ Lightweight Django REST API for creating, updating, browsing, and registering fo
 5. Visit `http://localhost:8000/api/` to confirm the API is reachable.
 
 ## Python Version and Environment
+
 - Use Python 3.10+ (aligned with Django 5.x requirements). A virtual environment is strongly recommended to isolate dependencies.
 - Default settings use SQLite (`db.sqlite3`). For other databases, update `DATABASES` in `eventsService/settings.py`.
 - JWT signing key defaults to the project secret; set `SIMPLE_JWT.SIGNING_KEY` (and `SECRET_KEY`) appropriately for non-local deployments.
 
 ## Features
+
 - CRUD for events with creator ownership checks and admin override.
 - Student registration and unregistration with capacity-aware queries (full/available).
 - Rich discovery: search by keyword, host, type, location, creator; date-based upcoming/past views.
@@ -44,6 +52,7 @@ Lightweight Django REST API for creating, updating, browsing, and registering fo
 - Sample fixtures (`fixtures/initial_data.json`) for quick demos and manual testing.
 
 ## Testing
+
 - Run Django’s test suite from the project root:
   ```bash
   cd eventsService
@@ -52,6 +61,7 @@ Lightweight Django REST API for creating, updating, browsing, and registering fo
 - For a quick sanity check of the project configuration without hitting the DB, run `python manage.py check`.
 
 ## Project Structure
+
 ```
 eventsService/
 ├─ manage.py                 # Django entrypoint
@@ -71,6 +81,7 @@ eventsService/
 ```
 
 ## Authentication
+
 - Uses `Authorization: bearer <JWT>` headers decoded locally via `ExternalJWTAuthentication`.
 - JWT payload must include `user_id`; optional `email`, `username`, and `role`.
 - Role-aware permissions:
@@ -80,6 +91,7 @@ eventsService/
   - `IsOwnerOrAdmin`: only the event creator (matched by `creator_id`) or an admin can modify/delete.
 
 ## API Endpoints (`/api/`)
+
 - `GET /api/` — simple overview of key routes.
 - `GET /api/events/` — list all events (ordered by end date).
 - `GET /api/events/<eventID>/` — retrieve a single event by ID.

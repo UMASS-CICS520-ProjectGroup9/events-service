@@ -26,4 +26,13 @@ urlpatterns = [
     path('events/by_type/<str:eventType>/', views.getEventsByType, name='getEventsByType'),
     path('events/by_location/<str:location>/', views.getEventsByLocation, name='getEventsByLocation'),
     path('events/by_creator/<str:creator>/', views.getEventsByCreator, name='getEventsByCreator'),
+    path('events/by_date_range/', views.getEventsByDateRange, name='getEventsByDateRange'),
+    path('events/by_capacity/<int:min_capacity>/', views.getEventsByCapacity, name='getEventsByCapacity'),
+    path('events/recent/<int:days>/', views.getRecentEvents, name='getRecentEvents'),
+    path('events/with_links/', views.getEventsWithLinks, name='getEventsWithLinks'),
+    path('events/with_zoom_links/', views.getEventsWithZoomLinks, name='getEventsWithZoomLinks'),
+    path('events/by_keyword/', views.getEventsByKeyword, name='getEventsByKeyword'),
+    path('health/', views.healthCheck, name='healthCheck'),
+    path('info/', views.apiInfo, name='apiInfo'),
+    path('welcome/', views.welcome, name='welcome'),
 ]
