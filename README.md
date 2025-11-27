@@ -13,6 +13,11 @@ Lightweight Django REST API for creating, updating, browsing, and registering fo
 - Core domain: `Event` records with capacity, registration roster, schedule, hosting details, and links.
 - Filtering, searching, sorting, and capacity-aware queries to support multiple event discovery flows.
 
+## Documentation
+
+- Sphinx docs live under `docs/`. Build with `cd docs && make html` and open `docs/build/html/index.html`.
+- Key pages: overview, API endpoints, and testing instructions.
+
 ## How to Compile and Run
 
 1. From the repo root, create/activate a virtualenv (recommended):
