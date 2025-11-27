@@ -59,6 +59,8 @@ Lightweight Django REST API for creating, updating, browsing, and registering fo
   python manage.py test
   ```
 - For a quick sanity check of the project configuration without hitting the DB, run `python manage.py check`.
+- 
+- All test cases result show on  all_testcases_report.html
 
 ## Project Structure
 
